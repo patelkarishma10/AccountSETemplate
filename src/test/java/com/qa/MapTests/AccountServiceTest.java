@@ -1,6 +1,6 @@
 package com.qa.MapTests;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Before;
@@ -24,8 +24,8 @@ public class AccountServiceTest {
 	public void addAccountTest() {
 		Account acc1 = new Account("K", "P", 1, 1);
 		String testAcc = json.getJSONForObject(acc1);
-		String message = am1.createAccount(testAcc);
-		assertEquals(message, am1.createAccount(testAcc));
+		am1.createAccount(testAcc);
+		assertTrue(am1.getAccountMap().containsKey(1));
 	}
 
 	@Test
