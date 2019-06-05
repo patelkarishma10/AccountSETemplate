@@ -21,9 +21,9 @@ public class AccountServiceTest {
 	public void setup() {
 		json = new JSONUtil();
 		am1 = new AccountMapRepository();
-		acc1 = new Account("K", "P", 1, 1);
-		acc2 = new Account("p", "L", 1, 1);
-		acc3 = new Account("K", "L", 1, 1);
+		acc1 = new Account("K", "P", "1", 1);
+		acc2 = new Account("p", "L", "2", 2);
+		acc3 = new Account("K", "L", "3", 3);
 	}
 
 	// @Test
@@ -44,7 +44,7 @@ public class AccountServiceTest {
 		System.out.println(json.getJSONForObject(acc1));
 		am1.getAccountMap().put(1, acc1);
 		am1.getAccountMap().put(2, acc2);
-		am1.getAccountMap().put(2, acc3);
+		am1.getAccountMap().put(3, acc3);
 
 		int count = am1.seachForName("A");
 		assertEquals(0, count);
@@ -69,7 +69,7 @@ public class AccountServiceTest {
 		System.out.println(json.getJSONForObject(acc1));
 		am1.getAccountMap().put(1, acc1);
 		am1.getAccountMap().put(2, acc2);
-		am1.getAccountMap().put(2, acc3);
+		am1.getAccountMap().put(3, acc3);
 
 		int count = am1.seachForName("K");
 		assertEquals(2, count);

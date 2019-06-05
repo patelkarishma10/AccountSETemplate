@@ -28,7 +28,7 @@ public class AccountMapRepository implements AccountRepository {
 
 	public String createAccount(String account) {
 		Account acc1 = this.json.getObjectForJSON(account, Account.class);
-		accountMap.put(acc1.getAccountNumber(), acc1);
+		accountMap.put(acc1.getId(), acc1);
 		// if (accountMap.get(acc1.getAccountNumber()) == acc1) {
 		// return "Account successfully created";
 		// } else {
@@ -38,7 +38,7 @@ public class AccountMapRepository implements AccountRepository {
 	}
 
 	public String deleteAccount(int accountNumber) {
-		Account acc1 = new Account("K", "P", 1, 1);
+		Account acc1 = new Account("K", "P", "1", 1);
 		accountMap.remove(acc1.getAccountNumber(), acc1);
 		return "Account successfully deleted";
 	}
