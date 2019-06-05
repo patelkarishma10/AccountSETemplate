@@ -29,17 +29,12 @@ public class AccountMapRepository implements AccountRepository {
 	public String createAccount(String account) {
 		Account acc1 = this.json.getObjectForJSON(account, Account.class);
 		accountMap.put(acc1.getId(), acc1);
-		// if (accountMap.get(acc1.getAccountNumber()) == acc1) {
-		// return "Account successfully created";
-		// } else {
-		// return "Account not successfully created";
-		// }
 		return "created successfuly";
 	}
 
 	public String deleteAccount(int accountNumber) {
-		Account acc1 = new Account("K", "P", "1", 1);
-		accountMap.remove(acc1.getAccountNumber(), acc1);
+		// Account acc1 = new Account("K", "P", "1", 1);
+		accountMap.remove((Integer) accountNumber);
 		return "Account successfully deleted";
 	}
 
