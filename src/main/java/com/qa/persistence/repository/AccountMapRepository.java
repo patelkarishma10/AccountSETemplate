@@ -1,5 +1,6 @@
 package com.qa.persistence.repository;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ public class AccountMapRepository implements AccountRepository {
 
 	private Map<Integer, Account> accountMap = new HashMap<Integer, Account>();
 	JSONUtil json = new JSONUtil();
+
 	// You must provide concrete implementation for each of these methods
 	// do not change the method signature
 	// THINK - if the parameter is a String, or the return type is a String
@@ -20,13 +22,19 @@ public class AccountMapRepository implements AccountRepository {
 	// You can use the suggested tests or build your own.
 
 	public String getAllAccounts() {
+		System.out.println(json.getJSONForObject(accountMap));
 		return json.getJSONForObject(accountMap);
 	}
 
 	public String createAccount(String account) {
-		Account acc1 = json.getObjectForJSON(account, Account.class);
+		Account acc1 = this.json.getObjectForJSON(account, Account.class);
 		accountMap.put(acc1.getAccountNumber(), acc1);
-		return "Account successfully created";
+		// if (accountMap.get(acc1.getAccountNumber()) == acc1) {
+		// return "Account successfully created";
+		// } else {
+		// return "Account not successfully created";
+		// }
+		return "created successfuly";
 	}
 
 	public String deleteAccount(int accountNumber) {
@@ -38,6 +46,19 @@ public class AccountMapRepository implements AccountRepository {
 	public String updateAccount(int accountNumber, String account) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public int seachForName(String str) {
+		Collection<Account> accList = accountMap.values();
+		int count = 0;
+		for (Account eachaccount : accList) {
+			if (eachaccount.getFirstName().equals(str)) {
+				count++;
+			}
+		}
+
+		System.out.println(count);
+		return count;
 	}
 
 	public Map<Integer, Account> getAccountMap() {

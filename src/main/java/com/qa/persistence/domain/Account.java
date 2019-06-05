@@ -1,11 +1,23 @@
 package com.qa.persistence.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Account {
 
-	private String firstName;
-	private String lastName;
-	private int accountNumber;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@Column(length = 50)
+	private String firstName;
+	@Column(length = 50)
+	private String lastName;
+	@Column(length = 4)
+	private int accountNumber;
 
 	public Account(String firstName, String lastName, int accountNumber, int id) {
 		super();
@@ -13,6 +25,10 @@ public class Account {
 		this.lastName = lastName;
 		this.accountNumber = accountNumber;
 		this.id = id;
+	}
+
+	public Account() {
+
 	}
 
 	public String getFirstName() {

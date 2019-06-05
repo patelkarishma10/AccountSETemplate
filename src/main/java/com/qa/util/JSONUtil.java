@@ -11,11 +11,12 @@ public class JSONUtil {
 	}
 
 	public String getJSONForObject(Object obj) {
+		// return JSONValue.toJSONString(obj);
 		return gson.toJson(obj);
 	}
 
 	public <T> T getObjectForJSON(String jsonString, Class<T> clazz) {
-		
+		// return (T) JSONValue.parse(jsonString);
 		return gson.fromJson(jsonString, clazz);
 	}
 
