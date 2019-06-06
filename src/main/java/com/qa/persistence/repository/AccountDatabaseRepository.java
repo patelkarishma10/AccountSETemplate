@@ -56,7 +56,6 @@ public class AccountDatabaseRepository implements AccountRepository {
 				accountNumber));
 
 		q1.executeUpdate();
-
 		return "{\"message\": \"account has been sucessfully updated\"}";
 	}
 
