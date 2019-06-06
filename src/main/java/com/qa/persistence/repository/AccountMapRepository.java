@@ -46,6 +46,7 @@ public class AccountMapRepository implements AccountRepository {
 	public int seachForName(String str) {
 		Collection<Account> accList = accountMap.values();
 		int count = 0;
+
 		for (Account eachaccount : accList) {
 			if (eachaccount.getFirstName().equals(str)) {
 				count++;
