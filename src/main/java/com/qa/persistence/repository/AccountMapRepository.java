@@ -4,13 +4,19 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.enterprise.inject.Alternative;
+import javax.inject.Inject;
+
 import com.qa.persistence.domain.Account;
 import com.qa.util.JSONUtil;
 
+@Alternative
 public class AccountMapRepository implements AccountRepository {
 
-	private Map<Integer, Account> accountMap = new HashMap<Integer, Account>();
-	JSONUtil json = new JSONUtil();
+	private Map<Integer, Account> accountMap = new HashMap<>();
+
+	@Inject
+	private JSONUtil json;
 
 	// You must provide concrete implementation for each of these methods
 	// do not change the method signature
@@ -28,6 +34,7 @@ public class AccountMapRepository implements AccountRepository {
 
 	public String createAccount(String account) {
 		Account acc1 = this.json.getObjectForJSON(account, Account.class);
+		System.out.println(acc1);
 		accountMap.put(acc1.getId(), acc1);
 		return "created successfuly";
 	}
@@ -39,11 +46,18 @@ public class AccountMapRepository implements AccountRepository {
 	}
 
 	public String updateAccount(int accountNumber, String account) {
-		// TODO Auto-generated method stub
-		return null;
+		Account accToUpdate = json.getObjectForJSON(account, Account.class);
+		accountMap.put(accountNumber, accToUpdate);
+		return "Account successfully updated";
 	}
 
-	public int seachForName(String str) {
+	public String searchAccount(int id) {
+		Account accountFound = accountMap.get(id);
+		return json.getJSONForObject(accountFound);
+
+	}
+
+	public int searchForName(String str) {
 		Collection<Account> accList = accountMap.values();
 		int count = 0;
 
@@ -52,7 +66,6 @@ public class AccountMapRepository implements AccountRepository {
 				count++;
 			}
 		}
-
 		System.out.println(count);
 		return count;
 	}
